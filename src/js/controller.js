@@ -1,7 +1,7 @@
  import icons from 'url:../img/icons.svg';
  import 'core-js/stable';
  import 'regenerator-runtime/runtime'; 
-
+ import * as modal from './model.js'
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -32,29 +32,10 @@ const renderSpinner = function(parentEl){
         
       if(!id) return;
       renderSpinner(recipeContainer);
-
-      const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/${id}');
-      const data = await res.json();
-
-      if (!res.ok) {
-        // If response is not ok (HTTP error status), throw a new Error
-        throw new Error(`Failed to fetch recipe (${res.status} ${res.status})`);
-      }
-  
-     let {recipe} = data.data;
-
-     recipe = {
-      id: recipe.id, 
-      title: recipe.title, 
-      publisher: recipe.publisher, 
-      sourceUrl: recipe.source_url, 
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time, 
-      ingredients: recipe.ingredients,
-     }
-     console.log(recipe);
-
+      //
+      await modal.loadRecipe(id);
+      const { recipe } = modal.state;
+ 
      // Rendering recipe: 
       const markeup = `  <figure class="recipe__fig">
       <img src="${recipe.image}" alt="Tomato" class="recipe__img" />
@@ -153,5 +134,7 @@ const renderSpinner = function(parentEl){
       alert('Failed to fetch recipe. Please try again later.');
     }
   }
-  ['hashchange', 'load'].forEach(ev=> window.addEventListener(ev, showRecipe
-));
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
+});
