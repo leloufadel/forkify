@@ -125,9 +125,6 @@ const renderSpinner = function(parentEl){
       </a>
     </div>`;
 
-    recipeContainer.innerHTML ='';
-    recipeContainer.insertAdjacentHTML('afterbegin', markeup);
-
     } catch (err) {
       // Catch and display any errors that occur during fetch or JSON parsing
       console.error('Error fetching recipe:', err);
