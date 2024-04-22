@@ -4,14 +4,7 @@ export const state = {
     recipe: {},
 };
 export const loadRecipe = async function(id){
-  const res = await fetch(`${API_URL}/${id}`);
-  const data = await res.json();
-
-  if (!res.ok) {
-      // If response is not ok (HTTP error status), throw a new Error
-      throw new Error(`Failed to fetch recipe (${res.status} ${res.status})`);
-  }
-
+  try{
   const {recipe} = data.data;
 
   state.recipe = {
@@ -24,4 +17,6 @@ export const loadRecipe = async function(id){
       cookingTime: recipe.cooking_time, 
       ingredients: recipe.ingredients,
   }
-}
+}catch (err) {
+   console.error(err);
+}};
