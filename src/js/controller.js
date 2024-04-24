@@ -2,6 +2,7 @@
  import 'regenerator-runtime/runtime'; 
  import * as modal from './model.js'
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -25,9 +26,11 @@ const recipeContainer = document.querySelector('.recipe');
   }
 const constrolSearhResults = async function(){
   try{
-   await modal.loadSearchResults('pizza');
+    const query = searchView.getQuery();
+    if(!query) return;
+   await modal.loadSearchResults(query);
    console.log(modal.state.search.results);
-
+  
   } catch (err){
     console.error(err);
   }
@@ -36,5 +39,6 @@ constrolSearhResults();
 
 const init = function () {
   recipeView.AddHandlerRender(showRecipe);
+  searchView.addHandlerSearch(constrolSearhResults);
 }
 init();

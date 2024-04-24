@@ -31,9 +31,9 @@ export const loadRecipe = async function(id){
 }};
 
 export const loadSearchResults = async function (query){
-  try{
+  try {
     const data = await getJSON(`${API_URL}?search=${query}`);
-    console.log(data);
+    console.log(`this is my data: ${data}`);
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
@@ -48,3 +48,5 @@ export const loadSearchResults = async function (query){
     console.error(err);
   }
 };
+// loadSearchResults('pizza');
+
