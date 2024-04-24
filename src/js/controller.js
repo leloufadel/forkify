@@ -23,6 +23,16 @@ const recipeContainer = document.querySelector('.recipe');
       recipeView.renderError();
     }
   }
+const constrolSearhResults = async function(){
+  try{
+   await modal.loadSearchResults('pizza');
+   console.log(modal.state.search.results);
+
+  } catch (err){
+    console.error(err);
+  }
+}
+constrolSearhResults();
 
 const init = function () {
   recipeView.AddHandlerRender(showRecipe);
