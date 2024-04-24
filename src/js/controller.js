@@ -20,12 +20,11 @@ const recipeContainer = document.querySelector('.recipe');
        
     } catch (err) {
       // Catch and display any errors that occur during fetch or JSON parsing
-      console.error('Error fetching recipe:', err);
-      alert('Failed to fetch recipe. Please try again later.');
+      recipeView.renderError();
     }
   }
 
 const init = function () {
-  recipeView.addHandlerRender(showRecipe);
+  recipeView.AddHandlerRender(showRecipe);
 }
 init();
