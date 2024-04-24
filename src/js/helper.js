@@ -1,5 +1,5 @@
 import { API_URL } from "./config";
-
+import { TIMEOUT_SEC } from "./config";
  const timeout = function (s) {
     return new Promise(function (_, reject) {
       setTimeout(function () {
@@ -10,8 +10,8 @@ import { API_URL } from "./config";
 
 export const getJSON = async function (url) {
     try{
-        
-const res = await (fetch(`${url}`));
+        const fetchPro = fetch(url);
+const res = await Promise.race(([`${fetchPro}`, timeout(TIMEOUT_SEC)]));
 // const res = await (fetch(url));
 
   const data = await res.json();
