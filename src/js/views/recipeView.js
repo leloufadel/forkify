@@ -29,6 +29,14 @@ renderSpinner = function(){
      this.#parentElement.insertAdjacentHTML('afterbegin', markeup);
    
    }
+
+   // Add hander 
+
+   AddHandlerRender(handler){
+    document.addEventListener('DOMContentLoaded', (event) => {
+      ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  });
+   }
 #generateMarkup() {
     return `  <figure class="recipe__fig">
     <img src="${this.data.image}" alt="Tomato" class="recipe__img" />

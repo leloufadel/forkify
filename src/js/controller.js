@@ -25,6 +25,7 @@ const recipeContainer = document.querySelector('.recipe');
     }
   }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
-});
+const init = function () {
+  recipeView.addHandlerRender(showRecipe);
+}
+init();
