@@ -3,12 +3,13 @@
  import * as modal from './model.js'
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
+import resultsView from './views/resultsView.js';
 
 const recipeContainer = document.querySelector('.recipe');
 
   const showRecipe = async function () {
     try {
-
+      resultsView.renderSpinner();
       const id = window.location.hash.slice(1);
         
       if(!id) return;
