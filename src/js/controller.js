@@ -29,9 +29,12 @@ const constrolSearhResults = async function(){
   try{
     const query = searchView.getQuery();
     if(!query) return;
+    // load search result
    await modal.loadSearchResults(query);
+
+   // Render Results: 
    console.log(modal.state.search.results);
-  
+    resultsView.render(modal.state.search.results);
   } catch (err){
     console.error(err);
   }
