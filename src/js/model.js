@@ -29,11 +29,12 @@ export const loadRecipe = async function(id){
 }catch (err) {
    console.error(err);
 }};
-
 export const loadSearchResults = async function (query){
   try {
     const data = await getJSON(`${API_URL}?search=${query}`);
-    console.log(`this is my data: ${data}`);
+    console.log(data); // Log the entire response object
+
+    // Adjust the following line based on the actual structure of the response object
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,

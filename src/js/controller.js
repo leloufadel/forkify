@@ -4,8 +4,14 @@
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import { async } from 'regenerator-runtime/runtime';
 
 const recipeContainer = document.querySelector('.recipe');
+ 
+if(module.hot) {
+module.hot.accept();
+ }
+
 
   const showRecipe = async function () {
     try {
@@ -26,7 +32,9 @@ const recipeContainer = document.querySelector('.recipe');
     }
   }
 const constrolSearhResults = async function(){
-  try{
+  try {
+    resultsView.renderSpinner();
+  
     const query = searchView.getQuery();
     if(!query) return;
     // load search result
